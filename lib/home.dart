@@ -17,6 +17,7 @@ class Home extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -175,24 +176,23 @@ class Home extends StatelessWidget {
             // SizedBox(height: 90,),
           
           
-            SingleChildScrollView(
-              
-              child: Container(
-                
-                height: 1000,
-                child: GridView.builder(
-                  physics: const ScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: 6,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 140,
-                    ), 
-                  itemBuilder: (context,index){
-                    return   Container(
-                      padding: EdgeInsets.only(top: 40),
+            Container(
+              height: 1000,
+              child: GridView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: 6,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 2,
+                  mainAxisSpacing: 5,
+                  childAspectRatio: 10/18,
+                  ), 
+                itemBuilder: (context,index){
+                  return   Container(
+                    padding: EdgeInsets.only(top: 40),
+                    child: FittedBox(
                       child: Column(
                         children: [
                           SizedBox(
@@ -200,14 +200,23 @@ class Home extends StatelessWidget {
                           ),
                           Stack(
                           overflow: Overflow.visible,
+                          clipBehavior: Clip.none,
                             children: [
                           Container(
                             height: 217,
                             width: 178,
                             decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(28),
-                            // color: Color(0xffFFFFFF),
-                            color: Colors.blueAccent
+                            color: Color(0xffFFFFFF),
+                            // color: Colors.blueAccent
+                            ),
+                                          ),
+                          Positioned(
+                            top: -80,
+                            right: 6,
+                            child: Container(
+                            height: 160,
+                            child: Image.asset('assets/images/image-removebg-preview (6).png'),
                             ),
                                           ),
                             Positioned(
@@ -250,22 +259,15 @@ class Home extends StatelessWidget {
                             ),
                                           ),
                                           
-                          Positioned(
-                            top: -80,
-                            right: 6,
-                            child: Container(
-                            height: 160,
-                            child: Image.asset('assets/images/image-removebg-preview (6).png'),
-                            ),
-                                          ),
+                          
                                         ],
                                   ),
                         ],
                       ),
-                    );
-                  }
-                  ),
-              ),
+                    ),
+                  );
+                }
+                ),
             ),
           
 
